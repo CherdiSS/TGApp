@@ -1,0 +1,11 @@
+# Для VPS: docker compose up -d --build
+# HTTPS поверх (Caddy/nginx + Let's Encrypt) настраивается отдельно — Telegram требует HTTPS.
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+    restart: unless-stopped
